@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <vector>
 #include <string>
 #include <ctime>
@@ -7,306 +7,408 @@
 
 using namespace std;
 
-class Staff() {
+class Staff {
 protected:
-	string name;
-	double salary;
-	int level;
+    string name;
+    double salary;
+    int level;
 
 public:
-	// конструктор
-	Staff(string name, double salary, int level) : name(name), salary(salary), level(level) {}
+    Staff(string name, double salary, int level) : name(name), salary(salary), level(level) {}
 
-	// деконструктор
-	virtual ~Staff() {}
+    virtual ~Staff() {}
 
-	// методы для получения данных
-	string getName() {
-		return name;
-	}
+    string getName() {
+        return name;
+    }
 
-	double getSalary() {
-		return salary;
-	}
+    double getSalary() {
+        return salary;
+    }
 
-	int getLevel() {
-		return level;
-	}
+    int getLevel() {
+        return level;
+    }
 
-	virtual void work() const {
-		cout << name << "выполняет работу" << endl;
-	}
-}
+    virtual void work() const {
+        cout << name << " РІС‹РїРѕР»РЅСЏРµС‚ СЂР°Р±РѕС‚Сѓ" << endl;
+    }
+};
 
-class Barista : class Staff {
+class Barista : public Staff {
 public:
-	Barista(string name, double salary, int level) : name(name), salary(salary), level(level) {}
+    Barista(string name, double salary, int level) : Staff(name, salary, level) {}
 
-	void work() const override {
-		cout << name << "готовит кофе, уровень навыков -> " << level << endl;
-	}
+    void work() const override {
+        cout << name << " РіРѕС‚РѕРІРёС‚ РєРѕС„Рµ, СѓСЂРѕРІРµРЅСЊ РЅР°РІС‹РєРѕРІ -> " << level << endl;
+    }
 };
 
 class Waiter : public Staff {
 public:
-	Waiter(string name, double salary, int level) : name(name), salary(salary), level(level) {}
+    Waiter(string name, double salary, int level) : Staff(name, salary, level) {}
 
-	void work() const override {
-		cout << name << " обслуживает клиентов, уровень навыка -> " << level << endl;
-	}
+    void work() const override {
+        cout << name << " РѕР±СЃР»СѓР¶РёРІР°РµС‚ РєР»РёРµРЅС‚РѕРІ, СѓСЂРѕРІРµРЅСЊ РЅР°РІС‹РєР° -> " << level << endl;
+    }
 };
 
 class Ingredients {
 private:
-	int coffee;
-	int milk;
-	int sugar;
-	int cups;
+    int coffee;
+    int milk;
+    int sugar;
+    int cups;
 
 public:
-	Ingredients(int c, int m, int s, int cp) : coffe(c), milk(m), sugar(s), cups(cp) {}
+    Ingredients(int c, int m, int s, int cp) : coffee(c), milk(m), sugar(s), cups(cp) {}
 
-	// Добавление ингридиентов
-	void addCoffee(int amount) {
-		coffee += amount;
-	}
+    void addCoffee(int amount) {
+        coffee += amount;
+    }
 
-	void addMilk(int amount) {
-		milk += amount;
-	}
+    void addMilk(int amount) {
+        milk += amount;
+    }
 
-	void addSugar(int amount) {
-		sugar += amount;
-	}
+    void addSugar(int amount) {
+        sugar += amount;
+    }
 
-	void addCups(int amount) {
-		cups += amount;
-	}
+    void addCups(int amount) {
+        cups += amount;
+    }
 
-	// Использование ингридиентов
-	bool useCoffe(int amount) {
-		if (coffee >= amount) {
-			coffee -= amount;
-			return true
-		}
-		else {
-			return false
-		}
-	}
+    bool useCoffee(int amount) {
+        if (coffee >= amount) {
+            coffee -= amount;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
-	bool useSugar(int amount) {
-		if (sugar >= amount) {
-			sugar -= amount;
-			return true
-		}
-		else {
-			return false
-		}
-	}
+    bool useSugar(int amount) {
+        if (sugar >= amount) {
+            sugar -= amount;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
-	bool useMilk(int amount) {
-		if (milk >= amount) {
-			milk -= amount;
-			return true
-		}
-		else {
-			return false
-		}
-	}
+    bool useMilk(int amount) {
+        if (milk >= amount) {
+            milk -= amount;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
-	bool useCups(int amount) {
-		if (cups >= amount) {
-			cups -= amount;
-			return true
-		}
-		else {
-			return false
-		}
-	}
+    bool useCups(int amount) {
+        if (cups >= amount) {
+            cups -= amount;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
-	void printStatus() const {
-		cout << "\n <-- Ингредиенты -->" << endl;
-		cout << "Кофе:" << coffee << endl;
-		cout << "Молоко:" << milk << endl;
-		cout << "Сахар:" << sugar << endl;
-		cout << "Стаканы:" << cups << endl;
-	}
+    void printStatus() const {
+        cout << "\n<-- РРЅРіСЂРµРґРёРµРЅС‚С‹ -->" << endl;
+        cout << "РљРѕС„Рµ: " << coffee << endl;
+        cout << "РњРѕР»РѕРєРѕ: " << milk << endl;
+        cout << "РЎР°С…Р°СЂ: " << sugar << endl;
+        cout << "РЎС‚Р°РєР°РЅС‹: " << cups << endl;
+    }
 };
 
-class CoffeShop {
+class CoffeeShop {
 private:
-	string name;
-	double balance;
-	Ingredients ingredients;
-	vector<Staff*> staff;
-	int reputation;
-	int day;
+    string name;
+    double balance;
+    Ingredients ingredients;
+    vector<Staff*> staff;
+    int reputation;
+    int day;
 
 public:
-	CoffeShop(string n, double b) :
-		name(n),
-		balance(b),
-		ingredients(15, 15, 15, 15),
-		reputation(4),
-		day(1) {}
+    CoffeeShop(string n, double b) :
+        name(n),
+        balance(b),
+        ingredients(15, 15, 15, 15),
+        reputation(4),
+        day(1) {
+    }
 
-	~CofeeShop() {
-		for (auto s : staff) {
-			delete s;
-		}
-	}
+    ~CoffeeShop() {
+        for (auto s : staff) {
+            delete s;
+        }
+    }
 
+    void hireStaff(Staff* s) {
+        staff.push_back(s);
+    }
 
-	void hireStaff(Staff* s) {
-		stuff.push_back(s);
-	}
+    void paySalaries() {
+        cout << "\n<-- Р’С‹РїР»Р°С‚Р° Р·Р°СЂРїР»Р°С‚ -->" << endl;
 
-	void paySalaries() {
-		cout << "\n <-- Выплата зарплат -->" << endl;
+        for (const auto& s : staff) {
+            if (balance >= s->getSalary()) {
+                balance -= s->getSalary();
+                cout << "Р’С‹РїР»Р°С‡РµРЅРѕ " << s->getSalary() << " РґР»СЏ " << s->getName() << endl;
+            }
+            else {
+                cout << "РќРµ С…РІР°С‚Р°РµС‚ РґРµРЅРµРі РґР»СЏ РІС‹РїР»Р°С‚С‹ Р·Р°СЂРїР»Р°С‚С‹ " << s->getName() << endl;
+                reputation--;
+            }
+        }
+    }
 
-		for (const auto& s : staff) {
-			if (balance >= s->getSalary()) {
-				balance -= s->getSalary();
-				cout << "Выплачено" << s->getSalary() << "для" << s->getName() << endl;
-			}
-			else {
-				cout << "Не хватает денег для выплаты зарплаты" << s->getName() << endl;
-				reputation--;
-			}
-		}
-	}
+    void buyIngredients() {
+        int choice;
+        int amount;
 
+        cout << "\n<-- Р—Р°РєСѓРїРєР° РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ -->" << endl;
+        cout << "1. РљРѕС„Рµ (5$ Р·Р° РїРѕСЂС†РёСЋ)" << endl;
+        cout << "2. РњРѕР»РѕРєРѕ (3$ Р·Р° РїРѕСЂС†РёСЋ)" << endl;
+        cout << "3. РЎР°С…Р°СЂ (2$ Р·Р° РїРѕСЂС†РёСЋ)" << endl;
+        cout << "4. РЎС‚Р°РєР°РЅС‡РёРє СЃ РєСЂС‹С€РєРѕР№ (1$ Р·Р° С€С‚СѓРєСѓ)" << endl;
+        cout << "0. Р’С‹С…РѕРґ" << endl;
+        cout << "Р’Р°С€ Р±Р°Р»Р°РЅСЃ: " << balance << endl;
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ С‡С‚Рѕ РєСѓРїРёС‚СЊ: ";
+        cin >> choice;
 
-	void buyIngredients() {
-		int choice;
-		int amount;
+        if (choice == 0) return;
 
-		cout << "/n<-- Закупка ингредиентов -->" << endl;
-		cout << "1. Кофе (5$ за порцию)" << endl;
-		cout << "2. Молоко (3$ за порцию)" << endl;
-		cout << "3. Сахар (2$ за порцию)" << endl;
-		cout << "4. Стаканчик с крышкой (1$ за штуку)" << endl;
-		cout << "0. Выход" << endl;
-		cout << "Ваш баланс:" << balance << endl;
-		cout << "Выберите что купить:" << endl;
-		cin >> choice;
+        cout << "РЎРєРѕР»СЊРєРѕ РєСѓРїРёС‚СЊ? ";
+        cin >> amount;
 
-		if (choice == 0) return;
+        switch (choice) {
+        case 1:
+            if (balance >= amount * 5) {
+                ingredients.addCoffee(amount);
+                balance -= amount * 5;
+                cout << "РљСѓРїР»РµРЅРѕ " << amount << " РїРѕСЂС†РёР№ РєРѕС„Рµ" << endl;
+            }
+            else {
+                cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ" << endl;
+            }
+            break;
 
-		cout << "Сколько купить?";
-		cin >> amount;
+        case 2:
+            if (balance >= amount * 3) {
+                ingredients.addMilk(amount);
+                balance -= amount * 3;
+                cout << "РљСѓРїР»РµРЅРѕ " << amount << " РїРѕСЂС†РёР№ РјРѕР»РѕРєР°" << endl;
+            }
+            else {
+                cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ" << endl;
+            }
+            break;
 
-		switch (choice) {
-			case 1:
-				if (balance >= amount * 5) {
-					ingredients.addCoffee(amount);
-					balance -= amount * 5;
-					cout << "Куплено" << amount << "порций кофе" << endl;
-				}
-				else {
-					cout << "Недостаточно средств" << endl;
-				}
+        case 3:
+            if (balance >= amount * 2) {
+                ingredients.addSugar(amount);
+                balance -= amount * 2;
+                cout << "РљСѓРїР»РµРЅРѕ " << amount << " РїРѕСЂС†РёР№ СЃР°С…Р°СЂР°" << endl;
+            }
+            else {
+                cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ" << endl;
+            }
+            break;
 
-			case 2:
-				if (balance >= amount * 3) {
-					ingredients.addMilk(amount);
-					balance -= amount * 3;
-					cout << "Куплено" << amount << "порций молока" << endl;
-				}
-				else {
-					cout << "Недостаточно средств" << endl;
-				}
+        case 4:
+            if (balance >= amount) {
+                ingredients.addCups(amount);
+                balance -= amount;
+                cout << "РљСѓРїР»РµРЅРѕ " << amount << " СЃС‚Р°РєР°РЅС‡РёРєРѕРІ" << endl;
+            }
+            else {
+                cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ" << endl;
+            }
+            break;
 
-			case 3:
-				if (balance >= amount * 2) {
-					ingredients.addSugar(amount);
-					balance -= amount * 2;
-					cout << "Куплено" << amount << "порций сахара" << endl;
-				}
-				else {
-					cout << "Недостаточно средств" << endl;
-				}
+        default:
+            cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ" << endl;
+        }
+    }
 
-			case 4:
-				if (balance >= amount) {
-					ingredients.addCups(amount);
-					balance -= amount;
-					cout << "Куплено" << amount << "стаканчиков" << endl;
-				}
-				else {
-					cout << "Недостаточно средств" << endl;
-				}
+    void serveClients() {
+        int clients = rand() % 10 + 1;
+        int served = 0;
 
-			default:
-				cout << "Неверный выбор" << endl;
-		}
-	}
+        cout << "\n<-- РћР±СЃР»СѓР¶РёРІР°РЅРёРµ РєР»РёРµРЅС‚РѕРІ -->" << endl;
+        cout << "РЎРµРіРѕРґРЅСЏ РїСЂРёС€Р»Рѕ " << clients << " РєР»РёРµРЅС‚РѕРІ" << endl;
 
-	void serveClients() {
-		int clients = rand() % 10 + 1;
-		int served = 0;
+        for (int i = 0; i < clients; i++) {
+            if (ingredients.useCoffee(1)) {
+                if (ingredients.useMilk(rand() % 2)) {
+                    if (ingredients.useSugar(rand() % 3)) {
+                        if (ingredients.useCups(1)) {
+                            balance += 10;
+                            served++;
 
-		cout << "\n<-- Обслуживание клиентов -->" << endl;
-		cout << "Сегодня пришло" << clients << "клиентов" << endl;
+                            cout << "РћР±СЃР»СѓР¶РµРЅ РєР»РёРµРЅС‚ в„–" << i + 1 << endl;
 
-		for (int i = 0; i < clients; i++) {
-			if (ingredients.useCoffe(1)) {
-				if (ingredients.useMilk(rand() % 2) {
-					if (ingredients.useSugar(rand() % 3)) {
-						if (ingredients.useCups()) {
-							balance += 10;
-							served++;
+                            for (const auto& s : staff) {
+                                s->work();
+                            }
 
-							cout << "Обслужен клиент №" << i + 1 << endl;
+                            continue;
+                        }
+                    }
+                }
+            }
+            cout << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕР±СЃР»СѓР¶РёС‚СЊ РєР»РёРµРЅС‚Р° в„–" << i + 1 << ", Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ РёРЅРіСЂРµРґРёРµРЅС‚С‹" << endl;
+            reputation--;
+        }
 
-							for (const auto& s : staff) {
-								s->work();
-							}
+        cout << "РћР±СЃР»СѓР¶РµРЅРѕ " << served << " РєР»РёРµРЅС‚РѕРІ РёР· " << clients << endl;
+        cout << "Р—Р°СЂР°Р±РѕС‚Р°РЅРѕ " << served * 10 << "$" << endl;
 
-							continue;
-						}
-					}
-				}
-			}
-			cout << "Не удалось обслужить клиента №" << i + 1 << "закончились ингредиенты" << endl;
-			reputation--;
-		}
+        if (served == clients) {
+            reputation++;
+            cout << "РћС‚Р»РёС‡РЅР°СЏ СЂР°Р±РѕС‚Р°! Р РµРїСѓС‚Р°С†РёСЏ РїРѕРІС‹С€РµРЅР°" << endl;
+        }
+    }
 
-		cout << "Обслужено" << served << "клиентов из" << clients << endl;
-		cout << "Заработано" << served * 10 << "$" << endl;
+    void payBills() {
+        double rent = 50;
+        double utilities = 30;
 
-		if (served == clients) {
-			reputation++;
-			cout << "Отличная работа! Репутация повышена" << endl;
-		}
-	}
+        cout << "\n<-- РћРїР»Р°С‚Р° СЃС‡РµС‚РѕРІ -->" << endl;
+        cout << "РђСЂРµРЅРґР°: " << rent << "$" << endl;
+        cout << "РљРѕРјРјСѓРЅР°Р»СЊРЅС‹Рµ СѓСЃР»СѓРіРё: " << utilities << "$" << endl;
 
-	void payBills() {
-		double rent = 50;
-		double utilites = 30;
+        if (balance >= rent + utilities) {
+            balance -= rent + utilities;
+            cout << "РЎС‡РµС‚Р° РѕРїР»Р°С‡РµРЅС‹" << endl;
+        }
+        else {
+            cout << "РќРµ С…РІР°С‚Р°РµС‚ СЃСЂРµРґСЃС‚РІ РґР»СЏ РѕРїР»Р°С‚С‹ СЃС‡РµС‚РѕРІ! Р РµРїСѓС‚Р°С†РёСЏ СЃРЅРёР¶РµРЅР°!" << endl;
+            reputation--;
+        }
+    }
 
-		cout << "\n<-- Оплата счетов -->" << endl;
-		cout << "Аренда: " << rent << "$" << endl;
-		cout << "Комунальные услуги: " << utilites << "$" << endl;
+    void nextDay() {
+        day++;
+        cout << "\nРќР°СЃС‚СѓРїРёР» " << day << " РґРµРЅСЊ" << endl;
+    }
 
-		if (balance >= rent + utilites) {
-			balance -= rent + utilites;
-			cout << "счета оплачены" << endl;
-		}
-		else {
-			cout << "Не хватает средств для оплаты счетов! Репутация снижена!";
-			reputation--;
-		}
-	}
+    
+    void printStatus() const {
+        cout << "\n <-- РЎС‚Р°С‚СѓСЃ РєРѕС„РµР№РЅРё " << name << " -->" << endl;
+        cout << "Р”РµРЅСЊ: " << day << endl;
+        cout << "Р‘Р°Р»Р°РЅСЃ: " << balance << endl;
+        cout "Р РµРїСѓС‚Р°С†РёСЏ: ";
+        for (int i = 0; i < reputation; i++) cout << "в…";
+        for (int i = 0; i < 5; i++) cout << "в†";
+        cout << endl;
 
-	void nextDay() {
-		day++;
-		cout << "\nНаступил " << day << "день" << endl;
-	}
-	 
+        cout << "\nРџРµСЂСЃРѕРЅР°Р» " << staff.size() << "С‡РµР»РѕРІРµРє" << endl;
+        
+        for (const auto& s : staff) {
+            cout << s->getName() << " - Р·Р°СЂРїР»Р°С‚Р°: " << s->getSalary() << "$" << endl;
+        }
+
+        ingredients.printStatus();
+    }
+
+    bool isGameOver() const {
+        return reputation <= 0 || balance <= -150;
+    }
+
+    void gameOver() const {
+        if (reputation <= 0) {
+            cout << "/nРРіСЂР° Р·Р°РєРѕРЅС‡РµРЅР°! Р’Р°С€Р° РєРѕС„РµР№РЅСЏ РїРѕС‚РµСЂСЏР»Р° СЂРµРїСѓС‚Р°С†РёСЋ СЃСЂРµРґРё РїРѕСЃРµС‚РёС‚РµР»РµР№!" << endl;
+        }
+
+        if (balance <= -150) {
+            cout << "/n РРіСЂР° РѕРєРѕРЅС‡РµРЅР°! РЈ РІР°СЃ РѕРіСЂРѕРјРЅС‹Р№ РґРѕР»Рі!"
+        }
+    }
+};
+
+void showMenu() {
+    cout << "/n<-- РњРµРЅСЋ СѓРїСЂР°РІР»РµРЅРёРёСЏ -->" << endl;
+    cout << "1. РџРѕРєР°Р·Р°С‚СЊ СЃС‚Р°С‚СѓСЃ РєРѕС„РµР№РЅРё" << endl;
+    cout << "2. Р—Р°РєСѓРїРёС‚СЊ РёРЅРіСЂРµРґРёРµРЅС‚С‹" << endl;
+    cout << "3. РћР±СЃР»СѓР¶РёС‚СЊ РєР»РёРµРЅС‚РѕРІ" << endl;
+    cout << "4. Р’С‹РїР»Р°С‚РёС‚СЊ Р·Р°СЂРїР»Р°С‚С‹ << endl;
+    cout << "5. РћРїР»Р°С‚РёС‚СЊ СЃС‡РµС‚Р°" << endl;
+    cout << "6. РџРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ РґРЅСЋ" << endl;
+    cout << "0. Р’С‹Р№С‚Рё РёР· РёРіСЂС‹" << endl;
+    cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ:"
 }
 
 int main() {
+    srand(time(NULL));
 
-}
+    cout << "<-- Coffee Shop Simulator -->" << endl;
+    cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РІР°С€РµР№ РєРѕС„РµР№РЅРё:";
+    string name;
+    getline(cin, name);
+
+    CoffeeShop shop(name, 150);
+
+    shop.hireStaff(new Barista("РњРёР»СЏСѓС€Р°", 10, 3));
+    shop.hireStaff(new Barista("РЎР°Р»Р°РІР°С‚", 15, 4));
+
+    int choice;
+    do {
+        shop.printStatus();
+        showMenu();
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            shop.printStatus();
+            break;
+
+        case 2:
+            shop.buyIngredients();
+            break;
+
+        case 3:
+            shop.serveClients();
+            break;
+
+        case 4:
+            shop.paySalaries();
+            break;
+
+        case 5: 
+            shop.payBills() :
+            break;
+
+        case 6:
+            shop.nextDay();
+            break;
+
+        case 0:
+            cout << "Р’С‹С…РѕРґ РёР· РёРіСЂС‹...." << endl;
+            break;
+
+        default:
+            cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ!"
+        }
+
+        if (shop.isGameOver()) {
+            shop.gameOver();
+            break;
+        }
+
+        sleep(2);
+
+    } while (choice != 0);
+
+    return 0
 }
